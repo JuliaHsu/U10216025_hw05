@@ -23,11 +23,11 @@ public class calculator extends JFrame {
 			jbt[i] = new JButton(i + "");
 			jbt[i].addActionListener(new ButtonListener());
 		}
-		jbt[12] = new JButton("print");
+		jbt[12] = new JButton("C");
 		jbt[12].addActionListener(new ButtonListener());
 		jbt[12].setForeground(Color.RED);
 		p2.add(jbt[12]);
-		jbt[13] = new JButton("C");
+		jbt[13] = new JButton("x√");
 		jbt[13].addActionListener(new ButtonListener());
 		jbt[13].setForeground(Color.RED);
 		p2.add(jbt[13]);
@@ -88,6 +88,14 @@ public class calculator extends JFrame {
                     jtfResult.setText(now_num+e.getActionCommand());
 				}
 			}
+			else if(e.getSource() == jbt[11]){
+				double now = Math.PI;
+				jtfResult.setText(String.format("%.12f", now));
+			}
+			else if(e.getSource() == jbt[10]){
+				now_num = jtfResult.getText();
+				jtfResult.setText(now_num+ ".");
+			}
 			else if(e.getSource()==jbt[19]){
 				double now = Double.parseDouble(jtfResult.getText());
 				if(option == 0){
@@ -97,8 +105,8 @@ public class calculator extends JFrame {
 				}
 				else{
 					temp = now;
-					sol = operation(option,sol,temp);
 					option = 1;
+					sol = operation(option,sol,temp);
 					reset = true;
 				}
 				jtfResult.setText(sol +"");
@@ -112,8 +120,8 @@ public class calculator extends JFrame {
 				}
 				else{
 					temp = now;
-					sol = operation(option, sol, temp);
 					option = 2;
+					sol = operation(option, sol, temp);
 					reset = true;
 				}
 				jtfResult.setText(sol+"");
@@ -127,8 +135,8 @@ public class calculator extends JFrame {
 				}
 				else{
 					temp = now;
-					sol = operation(option,sol,temp);
 					option = 3;
+					sol = operation(option,sol,temp);
 					reset = true;
 				}
 				jtfResult.setText(sol + "");
@@ -142,11 +150,34 @@ public class calculator extends JFrame {
 				}
 				else{
 					temp = now;
-					sol = operation(option,sol,temp);
 					option =4;
+					sol = operation(option,sol,temp);
 					reset = true;
 				}
-				}
+			}
+			else if(e.getSource() == jbt[15]){
+				double now = Double.parseDouble(jtfResult.getText());
+				temp = now;
+				option = 5;
+				sol = operation(option,sol,temp);
+				reset = true;
+			}
+			else if(e.getSource() == jbt[16]){
+				double now = Double.parseDouble(jtfResult.getText());
+				temp = now;
+				option = 6 ;
+				sol = operation(option, sol, temp);
+				reset = true;
+			}
+			else if(e.getSource() == jbt[17]){
+				double now = Double.parseDouble(jtfResult.getText());
+				temp = now;
+				option = 7;
+				sol = operation(option, sol, temp);
+				reset = true;
+			}
+			
+			// =
 			else if(e.getSource() == jbt[24]){
 				double now = Double.parseDouble(jtfResult.getText());
 				temp = now;
@@ -154,6 +185,55 @@ public class calculator extends JFrame {
 				option = 0;
 				reset = true;
 				jtfResult.setText(sol+ "");
+			}
+			else if(e.getSource() == jbt[18]){
+				double now = Double.parseDouble(jtfResult.getText());
+				if(option == 0){
+					sol = now;
+					option = 8;
+					reset = true;
+				}
+				else{
+					temp = now;
+					option = 8;
+					sol = operation(option, sol, temp);
+					reset = true;
+				}
+			}
+			else if(e.getSource() == jbt[12]){
+				temp = 0;
+				sol = 0;
+				option = 0;
+				reset = true;
+				jtfResult.setText("0");
+			}
+			else if(e.getSource() == jbt[13]){
+				double now = Double.parseDouble(jtfResult.getText());
+				if(option == 0){
+					sol = now;
+					option = 10;
+					reset = true;
+				}
+				else{
+					temp = now;
+					option = 10;
+					sol = operation(option, sol, temp);
+					reset = true;
+				}
+			}
+			else if(e.getSource() == jbt[14]){
+				double now = Double.parseDouble(jtfResult.getText());
+				if(option == 0){
+					sol = now;
+					option = 9;
+					reset = true;
+				}
+				else{
+					temp = now;
+					option = 9;
+					sol = operation(option,sol,temp);
+					reset = true;
+				}
 			}
 			}
 			
@@ -171,6 +251,24 @@ public class calculator extends JFrame {
 		}
 		else if(option == 4){
 			sol = sol/ temp;
+		}
+		else if(option ==5){
+			sol = Math.sin(temp);
+		}
+		else if(option == 6){
+			sol = Math.cos(temp);
+		}
+		else if(option == 7){
+			sol = Math.tan(temp);
+		}
+		else if(option == 8){
+			sol = Math.pow(sol,temp);
+		}
+		else if(option == 9){
+			sol = Math.log10(temp);
+		}
+		else if(option == 10){
+			sol = Math.pow(sol, 1/temp);
 		}
 		return sol;
 	}
