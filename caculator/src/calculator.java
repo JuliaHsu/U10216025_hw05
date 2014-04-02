@@ -5,13 +5,17 @@ import javax.swing.*;
 public class calculator extends JFrame {
 	private JTextField jtfResult = new JTextField();
 	private JButton jbt[];
-	
+	private double sol = 0;
+	private String now_num = "";
+	private double temp = 0;
+	private int option = 0;
+	private boolean reset = false;
 	public calculator(){
-		jtfResult = new JTextField();
+		jtfResult = new JTextField("0");
 		jtfResult.setEditable(false);
 		jtfResult.setBackground(Color.WHITE);
 		JPanel p1 = new JPanel(new GridLayout(1,1) );
-		p1.add(jtfResult);
+		p1.add(jtfResult,BorderLayout.NORTH);
 		jbt = new JButton[25];
 		
 		JPanel p2 = new JPanel(new GridLayout(5,3) );
@@ -70,15 +74,113 @@ public class calculator extends JFrame {
 	private class ButtonListener implements ActionListener{
 		
 		public void actionPerformed(ActionEvent e){
+			if(e.getSource() == jbt[0] || e.getSource() == jbt[1] || e.getSource() == jbt[2] ||
+				e.getSource() == jbt[3] || e.getSource() == jbt[4] || e.getSource() == jbt[5]
+				|| e.getSource() == jbt[6] || e.getSource() == jbt[7] || e.getSource() == jbt[8]
+				|| e.getSource() == jbt[9]){
+				now_num = jtfResult.getText();
+				if(Double.parseDouble(now_num)==0 ||reset){
+				reset = false;
+				jtfResult.setText(e.getActionCommand());
+				}
+				else{
+					now_num=jtfResult.getText();
+                    jtfResult.setText(now_num+e.getActionCommand());
+				}
+			}
+			else if(e.getSource()==jbt[19]){
+				double now = Double.parseDouble(jtfResult.getText());
+				if(option == 0){
+					sol = now;
+					option = 1;
+					reset = true;
+				}
+				else{
+					temp = now;
+					sol = operation(option,sol,temp);
+					option = 1;
+					reset = true;
+				}
+				jtfResult.setText(sol +"");
+			}
+			else if(e.getSource() == jbt[20]){
+				double now = Double.parseDouble(jtfResult.getText());
+				if(option == 0){
+					sol = now;
+					option = 2;
+					reset = true;
+				}
+				else{
+					temp = now;
+					sol = operation(option, sol, temp);
+					option = 2;
+					reset = true;
+				}
+				jtfResult.setText(sol+"");
+			}
+			else if (e.getSource() == jbt[21]){
+				double now = Double.parseDouble(jtfResult.getText());
+				if(option == 0){
+					sol = now;
+					option = 3;
+					reset = true;
+				}
+				else{
+					temp = now;
+					sol = operation(option,sol,temp);
+					option = 3;
+					reset = true;
+				}
+				jtfResult.setText(sol + "");
+			}
+			else if(e.getSource() == jbt[22]){
+				double now = Double.parseDouble(jtfResult.getText());
+				if(option == 0){
+					sol = now;
+					option = 4;
+					reset = true;
+				}
+				else{
+					temp = now;
+					sol = operation(option,sol,temp);
+					option =4;
+					reset = true;
+				}
+				}
+			else if(e.getSource() == jbt[24]){
+				double now = Double.parseDouble(jtfResult.getText());
+				temp = now;
+				sol = operation(option,sol,temp);
+				option = 0;
+				reset = true;
+				jtfResult.setText(sol+ "");
+			}
+			}
 			
-		}
-		
-	}
 	
-	public static  void main(String[] args){
+		
+	public double operation(int option, double sol,double temp){
+		if(option == 1){
+			sol = sol + temp;
+		}
+		else if(option ==2){
+			sol = sol - temp;
+		}
+		else if(option ==3){
+			sol = sol * temp;
+		}
+		else if(option == 4){
+			sol = sol/ temp;
+		}
+		return sol;
+	}
+	}
+
+	
+	public static void main(String[] args){
 		calculator c = new calculator();
 		c.setTitle("Calculator");
-		c.setSize(400,300);
+		c.setSize(500,400);
 		c.setLocationRelativeTo(null);
 		c.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		c.setVisible(true);
