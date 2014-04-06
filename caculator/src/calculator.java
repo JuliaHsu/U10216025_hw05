@@ -3,6 +3,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 public class calculator extends JFrame {
+	
 	private JTextField jtfResult = new JTextField();
 	private JButton jbt[];
 	private double sol = 0;
@@ -67,6 +68,7 @@ public class calculator extends JFrame {
 			jbt[i].setForeground(Color.RED);
 			jbt[i].addActionListener(new ButtonListener());
 		}
+		
 		add(p1,BorderLayout.NORTH);
 		add(p2,BorderLayout.CENTER);
 		add(p3,BorderLayout.EAST);
@@ -79,7 +81,7 @@ public class calculator extends JFrame {
 				|| e.getSource() == jbt[6] || e.getSource() == jbt[7] || e.getSource() == jbt[8]
 				|| e.getSource() == jbt[9]){
 				now_num = jtfResult.getText();
-				if(Double.parseDouble(now_num)==0 ||reset){
+				if(reset){
 				reset = false;
 				jtfResult.setText(e.getActionCommand());
 				}
@@ -274,7 +276,6 @@ public class calculator extends JFrame {
 	}
 	}
 
-	
 	public static void main(String[] args){
 		calculator c = new calculator();
 		c.setTitle("Calculator");
@@ -282,7 +283,6 @@ public class calculator extends JFrame {
 		c.setLocationRelativeTo(null);
 		c.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		c.setVisible(true);
-		
 	}
 }
 
