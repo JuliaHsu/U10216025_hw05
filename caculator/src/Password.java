@@ -5,7 +5,7 @@ import javax.swing.*;
 public class Password extends JFrame {
 	String words;
 	private JLabel setPassword ;
-	private JTextField jtfPasswoed ;
+	private JTextField jtfPassword ;
 	private JButton jbtSet ;
 	JPanel p1 ;
 	
@@ -16,7 +16,26 @@ public class Password extends JFrame {
 		p1.setLayout(new GridLayout(1,3));
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		JLabel setPassword = new JLabel("Set your own password");
-		
+		p1.add(setPassword);
+		JTextField jtfPassword = new JTextField();
+		p1.add(jtfPassword);
+		JButton jbtSet = new JButton("Confirm");
+		p1.add(jbtSet);
+		jbtSet.addActionListener(new ButtonListener());
+		add(p1,BorderLayout.CENTER);
 	}
+	private class ButtonListener implements ActionListener{
+		public void actionPerformed(ActionEvent e){
+			words = jtfPassword.getText();
+			Password2 p = new Password2();
+			p.number = words;
+		}
+	}
+public static void main(String[] args){
+	Password password = new Password();
+	password.setSize(500,70);
+	password.setLocationRelativeTo(null);
+	password.setVisible(true);
+}
 }
 	
