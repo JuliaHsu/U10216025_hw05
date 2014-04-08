@@ -1,0 +1,51 @@
+import java.awt.*;
+import java.awt.event.*;
+
+import javax.swing.*;
+public class Password extends JFrame {
+	private char[] password ;
+	private JPasswordField  passwordField= new JPasswordField();
+	private JLabel jlPassword = new JLabel();
+	private JButton jbtEnter = new JButton();
+	private calculator calculation = new calculator();
+	private JFrame calculatorFrame = new JFrame();
+	public Password(){
+		jlPassword = new JLabel("Password");
+		passwordField = new JPasswordField("");
+		jbtEnter = new JButton("Enter");
+		JPanel password = new JPanel();
+		password.add(jlPassword,BorderLayout.NORTH);
+		password.add(passwordField,BorderLayout.CENTER);
+		password.add(jbtEnter,BorderLayout.SOUTH);
+		add(password);
+		
+		jbtEnter.addActionListener(new ButtonListener());
+		
+	}
+	
+	private class ButtonListener implements ActionListener{
+		public void actionPerformed(ActionEvent e){
+			
+			password = passwordField.getPassword();
+			char[] actualPassword = {'0','0','0','0'};
+			if(password == actualPassword){
+				calculatorFrame .setVisible(true);
+				calculatorFrame.add(calculation);
+				calculatorFrame.pack();
+				
+			}
+		}
+		
+	}
+	
+
+
+public static void main(String[] args){
+	Password password = new Password();
+	password.setTitle("Sign in");
+	password.setSize(500,400);
+	password.setLocationRelativeTo(null);
+	password.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	password.setVisible(true);
+}
+}

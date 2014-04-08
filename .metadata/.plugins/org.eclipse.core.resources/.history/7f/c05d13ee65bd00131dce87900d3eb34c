@@ -1,0 +1,48 @@
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+public class Password extends JFrame {
+	String words;
+	private JLabel setPassword ;
+	private JTextField jtfPassword ;
+	private JButton jbtSet ;
+	JPanel p1 ;
+
+	public Password(){
+		super("Set Password");
+		JPanel p1 = new JPanel();
+		this.setContentPane(p1);
+		p1.setLayout(new GridLayout(1,3));
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		JLabel setPassword = new JLabel("Set your own password");
+		p1.add(setPassword);
+		jtfPassword = new JTextField();
+		p1.add(jtfPassword);
+		JButton jbtSet = new JButton("Confirm");
+		p1.add(jbtSet);
+		add(p1,BorderLayout.CENTER);
+		jbtSet.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				words = jtfPassword.getText();
+				Password2 p = new Password2();
+				p.number = words;
+			}
+		});
+		this.setSize(500,70);
+		this.setLocationRelativeTo(null);
+		this.setVisible(true);
+	}
+	
+public static void main(String[] args){
+	Password password = new Password();
+	
+}
+}
+	

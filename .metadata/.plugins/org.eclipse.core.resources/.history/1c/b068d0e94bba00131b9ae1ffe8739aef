@@ -1,0 +1,17 @@
+import java.awt.*;
+import javax.swing.*;
+public class Password extends JFrame {
+	private JPasswordField  passwordField= new JPasswordField();
+	private JLabel jlPassword = new JLabel();
+	private JButton jbtEnter = new JButton();
+	private calculator c = new calculator();
+	private JFrame calculatorFrame = new JFrame();
+	public Password(){
+		jlPassword = new JLabel("Password");
+		passwordField = new JPasswordField("");
+		JPanel password = new JPanel();
+		password.add(jlPassword,BorderLayout.NORTH);
+		password.add(passwordField,BorderLayout.CENTER);
+		add(password);
+	}
+}

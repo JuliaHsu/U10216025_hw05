@@ -1,0 +1,43 @@
+import java.awt.*;
+import java.awt.event.*;
+
+import javax.swing.*;
+public class Password2 extends JFrame {
+	private JLabel enterPassword;
+	private JTextField ownPassword;
+	private JButton jbtEnter;
+	private JPanel p2;
+	String number;
+	public Password2(){
+		super("Sign in");
+		JPanel p2 = new JPanel(new GridLayout(1,3));
+		this.setContentPane(p2);
+		JLabel enterPassword = new JLabel("Enter your password");
+		p2.add(enterPassword);
+		JTextField ownPassword = new JTextField();
+		p2.add(ownPassword);
+		JButton jbtEnter = new JButton("Enter");
+		p2.add(jbtEnter);
+		add(p2,BorderLayout.CENTER);
+		jbtEnter.addActionListener(new ButtonListener());
+		this.setSize(500,70);
+		this.setLocationRelativeTo(null);
+		this.setVisible(true);
+	}
+	private class ButtonListener implements ActionListener{
+		public void actionPerformed(ActionEvent e){
+			Password p = new Password();
+			if(ownPassword.getText().equals(number) ){
+				try{
+					calculator c = new calculator();
+				}catch(Exception a){
+					
+				}
+			}
+			else{
+				p.main(null);
+			}
+		}
+	}
+
+}

@@ -1,0 +1,51 @@
+package calculator;
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+//Create a class named Password2 which extends JFrame
+public class Password2 extends JFrame {
+	private JLabel enterPassword;
+	private JTextField ownPassword;
+	private JButton jbtEnter;
+	private JPanel p2;
+	String number;
+	//The constructor of Password2
+	public Password2(){
+		super("Sign in");
+		JPanel p2 = new JPanel(new GridLayout(1,3));
+		this.setContentPane(p2);
+		JLabel enterPassword = new JLabel("Enter your password");
+		p2.add(enterPassword);
+		ownPassword = new JTextField();
+		p2.add(ownPassword);
+		JButton jbtEnter = new JButton("Enter");
+		p2.add(jbtEnter);
+		add(p2,BorderLayout.CENTER);
+		jbtEnter.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				Password p = new Password();
+				if(ownPassword.getText().equals(number) ){
+					try{
+						calculator c = new calculator();
+					}catch(Exception a){
+						
+					}
+				}
+				else{
+					p.main(null);
+				}
+			}
+		});
+		this.setSize(500,70);
+		this.setLocationRelativeTo(null);
+		this.setVisible(true);
+	}
+
+}

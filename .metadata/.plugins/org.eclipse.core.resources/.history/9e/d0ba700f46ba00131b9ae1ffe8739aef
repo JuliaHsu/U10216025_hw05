@@ -1,0 +1,6 @@
+import java.awt.*;
+import javax.swing.*;
+public class Password extends JFrame {
+	private JPasswordField  password= new JPasswordField();
+	private calculator c = new calculator();
+}
