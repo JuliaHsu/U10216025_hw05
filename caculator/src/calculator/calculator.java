@@ -1,4 +1,5 @@
 package calculator;
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -17,6 +18,7 @@ public class calculator extends JFrame {
 	private boolean reset = false;
 	//Constructor of calculator
 	public calculator(){
+		
 		jtfResult = new JTextField("0");
 		//The text field cannot be edited
 		jtfResult.setEditable(false);
@@ -39,7 +41,7 @@ public class calculator extends JFrame {
 		jbt[12].addActionListener(new ButtonListener());
 		jbt[12].setForeground(Color.RED);
 		p2.add(jbt[12]);
-		jbt[13] = new JButton("x√");
+		jbt[13] = new JButton("x°‘");
 		jbt[13].addActionListener(new ButtonListener());
 		jbt[13].setForeground(Color.RED);
 		p2.add(jbt[13]);
@@ -60,7 +62,7 @@ public class calculator extends JFrame {
 		jbt[10] = new JButton(".");
 		jbt[10].addActionListener(new ButtonListener());
 		p2.add(jbt[10]);
-		jbt[11] = new JButton("π");
+		jbt[11] = new JButton("£k");
 		jbt[11].addActionListener(new ButtonListener());
 		p2.add(jbt[11]);
 		JPanel p3 = new JPanel(new GridLayout(5,2));
@@ -70,23 +72,23 @@ public class calculator extends JFrame {
 		jbt[18] = new JButton("^");
 		jbt[19] = new JButton("+");
 		jbt[20] = new JButton("-");
-		jbt[21] = new JButton("×");
-		jbt[22] = new JButton("÷");
-		jbt[23] = new JButton("±");
+		jbt[21] = new JButton("°—");
+		jbt[22] = new JButton("°“");
+		jbt[23] = new JButton("°”");
 		jbt[24] = new JButton("=");
 		for(int i = 15; i <= 24; i++){
 			p3.add(jbt[i]);
 			jbt[i].setForeground(Color.RED);
 			jbt[i].addActionListener(new ButtonListener());
 		}
-
+		
 		add(p1,BorderLayout.NORTH);
 		add(p2,BorderLayout.CENTER);
 		add(p3,BorderLayout.EAST);
 	}
 	//Handle the buttons
 	private class ButtonListener implements ActionListener{
-
+		
 		public void actionPerformed(ActionEvent e){
 			//The button of numbers
 			if(e.getSource() == jbt[0] || e.getSource() == jbt[1] || e.getSource() == jbt[2] ||
@@ -109,7 +111,7 @@ public class calculator extends JFrame {
 				double now = Math.PI;
 				jtfResult.setText(String.format("%.12f", now));
 			}
-
+			
 			else if(e.getSource() == jbt[10]){
 				now_num = jtfResult.getText();
 				jtfResult.setText(now_num+ ".");
@@ -201,7 +203,7 @@ public class calculator extends JFrame {
 				sol = operation(option, sol, temp);
 				reset = true;
 			}
-
+			
 			//Set =
 			else if(e.getSource() == jbt[24]){
 				double now = Double.parseDouble(jtfResult.getText());
@@ -265,8 +267,8 @@ public class calculator extends JFrame {
 				}
 			}
 			}
-
-
+			
+	
 	//The method of operation	
 	public double operation(int option, double sol,double temp){
 		if(option == 1){
@@ -303,60 +305,64 @@ public class calculator extends JFrame {
 	}
 	}
 	//main method
-		public static void main(String[] args){
-			//Create a frame of password
-			Password pframe = new Password();
-			pframe.setTitle("Sign in");
-			pframe.setSize(250,150);
-			pframe.setLocationRelativeTo(null);
-			pframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			pframe.setVisible(true);
-		}
-}
-class Password extends JFrame{
-	//Create a frame of calculator
-	calculator cframe = new calculator();
-	//Create the labels, text fields, buttons 
-	private JLabel jlEnter = new JLabel("Password");
-	private JPasswordField jtfPassword = new JPasswordField();
-	private JButton jbtEnter  = new JButton("Sign in");
-	private JLabel jlWrong = new JLabel();
-	//The constructor of password
-	public Password(){
-		//Add panels 
-		JPanel p4 = new JPanel(new GridLayout(2,3));
-		p4.add(jlEnter);
-		p4.add(jtfPassword);
-		JPanel p5 = new JPanel(new FlowLayout(FlowLayout.CENTER));
-		p5.add(jbtEnter);
-		JPanel p6 = new JPanel(new FlowLayout(FlowLayout.CENTER));
-		p6.add(jlWrong);
-		add(p4,BorderLayout.NORTH);
-		add(p5,BorderLayout.CENTER);
-		add(p6,BorderLayout.SOUTH);
-		////Register listener
-		jbtEnter.addActionListener(new ButtonListener());
-	}
-	//Set the password
-	String password = "0000";
-	//Handle the button
-	private class ButtonListener implements ActionListener{
-		public void actionPerformed(ActionEvent e){
-			//Judge the password
-			if(String.valueOf(jtfPassword.getPassword()).equals(password)){
-				//Set the size
-				cframe.setSize(500,600);
-				//Set title
-				cframe.setTitle("Calculator");
-				////Center a frame
-				cframe.setLocationRelativeTo(null);
-				cframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				cframe.setVisible(true);
-			}
-			else{
-				//Ask user enter the password again
-				jlWrong.setText("Please enter your password again");
-			}
-		}
+	public static void main(String[] args){
+		//Create a frame of password
+		Password pframe = new Password();
+		pframe.setTitle("Sign in");
+		pframe.setSize(250,150);
+		pframe.setLocationRelativeTo(null);
+		pframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		pframe.setVisible(true);
 	}
 }
+	class Password extends JFrame{
+		//Create a frame of calculator
+		calculator cframe = new calculator();
+		//Create the labels, text fields, buttons 
+		private JLabel jlEnter = new JLabel("Password");
+		private JPasswordField jtfPassword = new JPasswordField();
+		private JButton jbtEnter  = new JButton("Sign in");
+		private JLabel jlWrong = new JLabel();
+		//The constructor of password
+		public Password(){
+			//Add panels 
+			JPanel p4 = new JPanel(new GridLayout(2,3));
+			p4.add(jlEnter);
+			p4.add(jtfPassword);
+			JPanel p5 = new JPanel(new FlowLayout(FlowLayout.CENTER));
+			p5.add(jbtEnter);
+			JPanel p6 = new JPanel(new FlowLayout(FlowLayout.CENTER));
+			p6.add(jlWrong);
+			add(p4,BorderLayout.NORTH);
+			add(p5,BorderLayout.CENTER);
+			add(p6,BorderLayout.SOUTH);
+			////Register listener
+			jbtEnter.addActionListener(new ButtonListener());
+		}
+		//Set the password
+		String password = "0000";
+		//Handle the button
+		private class ButtonListener implements ActionListener{
+			public void actionPerformed(ActionEvent e){
+				//Judge the password
+				if(String.valueOf(jtfPassword.getPassword()).equals(password)){
+					//Set the size
+					cframe.setSize(500,600);
+					//Set title
+					cframe.setTitle("Calculator");
+					////Center a frame
+					cframe.setLocationRelativeTo(null);
+					cframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					cframe.setVisible(true);
+				}
+				else{
+					//Ask user enter the password again
+					jlWrong.setText("Please enter your password again");
+				}
+			}
+		}
+	}
+	
+
+
+
